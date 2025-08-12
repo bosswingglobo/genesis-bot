@@ -1,37 +1,29 @@
-name: Deploy on Push
+name: Auto-Deploy Contract
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, master ]  # Deploys on every push to main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '18.x'  # Pin to a specific LTS version
 
       - name: Install dependencies
         run: npm install
 
-      - name: Copy secrets to .env
-        run: |
-          echo "BASE_MAINNET_RPC_URL=${{ secrets.BASE_MAINNET_RPC_URL }}" >> .env
-          echo "ETHEREUM_MAINNET_RPC_URL=${{ secrets.ETHEREUM_MAINNET_RPC_URL }}" >> .env
-          echo "RELAYER_PRIVATE_KEY=${{ secrets.RELAYER_PRIVATE_KEY }}" >> .env
+      - name: Compile contracts
+        run: npm run compile
 
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy
-        run: npx hardhat deploy # Change this to your actual deploy command if needed
+      - name: Deploy to Base Mainnet
         env:
           BASE_MAINNET_RPC_URL: ${{ secrets.BASE_MAINNET_RPC_URL }}
-          ETHEREUM_MAINNET_RPC_URL: ${{ secrets.ETHEREUM_MAINNET_RPC_URL }}
           RELAYER_PRIVATE_KEY: ${{ secrets.RELAYER_PRIVATE_KEY }}
+        run: npx hardhat run scripts/deployAllGasless.js --network base
