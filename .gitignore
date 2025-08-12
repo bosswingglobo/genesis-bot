@@ -1,22 +1,15 @@
-# Ignore environment files containing secrets
+# Secrets
 .env
 .env.*
 
-# Ignore node modules
+# Node modules
 node_modules/
 
-# Ignore build artifacts (Hardhat/Foundry)
+# Build files
 artifacts/
 cache/
 coverage/
 
-# Ignore private keys and certs
-*.pem
-*.key
-*.pfx
-
-# Optional: Ignore IDE files
-.env.local
+# OS files
 .DS_Store
-*.swp
-*~
+Thumbs.db
