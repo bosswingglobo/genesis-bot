@@ -4,12 +4,14 @@
   "description": "Genesis Bot for Base Network",
   "main": "index.js",
   "scripts": {
- "compile": "npx hardhat compile",
- "clean": "npx hardhat clean",
-  "test": "npx hardhat test",
-  "deploy": "npx hardhat run scripts/deployAllGasless.js",
-  "build": "npm run compile" },
+    "compile": "npx hardhat compile",
+    "clean": "npx hardhat clean",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deployAllGasless.js",
+    "build": "npm run compile"  // Added for GitHub Actions
+  },
   "devDependencies": {
-  "hardhat": "^2.11.0",
-  "dotenv": "^16.0.3" }
+    "hardhat": "^2.11.0",
+    "dotenv": "^16.0.3"
+  }
 }
