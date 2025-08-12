@@ -1,17 +1,14 @@
 {
-  "name": "genesis-bots",
+  "name": "genesis-bot",
   "version": "1.0.0",
-  "description": "Self-Evolving Crypto Bots from Year 3500",
+  "description": "Self-evolving crypto bot from Year 3500",
   "scripts": {
     "compile": "npx hardhat compile",
-    "deploy": "npx hardhat run scripts/deployAllGasless.js"
+    "deploy": "npx hardhat run scripts/deploy.js --network mainnet",
+    "build": "npx hardhat compile"  // Add this line
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "hardhat": "^2.22.0"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.9.0",
-    "@gelatonetwork/relay-context": "^1.0.0"
   }
 }
