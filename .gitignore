@@ -1,0 +1,22 @@
+# Ignore environment files containing secrets
+.env
+.env.*
+
+# Ignore node modules
+node_modules/
+
+# Ignore build artifacts (Hardhat/Foundry)
+artifacts/
+cache/
+coverage/
+
+# Ignore private keys and certs
+*.pem
+*.key
+*.pfx
+
+# Optional: Ignore IDE files
+.env.local
+.DS_Store
+*.swp
+*~
