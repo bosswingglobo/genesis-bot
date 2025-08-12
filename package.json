@@ -1,7 +1,16 @@
-"scripts": {
-  "compile": "npx hardhat compile",
-  "clean": "npx hardhat clean",
-  "test": "npx hardhat test",
-  "deploy": "npx hardhat run scripts/deployAllGasless.js",
-  "build": "npm run compile"
+{
+  "name": "genesis-bot",
+  "version": "1.0.0",
+  "description": "Auto-deployed bot for Base",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "build": "npm run compile",
+    "clean": "npx hardhat clean",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deployAllGasless.js"
+  },
+  "devDependencies": {
+    "hardhat": "^2.11.0",
+    "dotenv": "^16.0.3"
+  }
 }
