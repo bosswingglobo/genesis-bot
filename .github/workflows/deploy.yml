@@ -1,48 +1,28 @@
-name: Auto-Deploy Contract
+name: Deploy Bot
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Validate package.json
-        run: |
-          node -e "JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log('✅ package.json is valid');"
+      - uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm ci || npm install
+        run: npm install
 
-      - name: Compile contracts
-        run: npx hardhat compile
+      - name: Build project
+        run: npm run build
 
-      - name: Deploy to Base (Mainnet by default)
+      - name: Deploy to Base Mainnet
+        run: npx hardhat run scripts/deploy.js --network mainnet
         env:
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          API_URL: ${{ secrets.API_URL }}
-          API_URL_SEPOLIA: ${{ secrets.API_URL_SEPOLIA }}
-          BASESCAN_API_KEY: ${{ secrets.BASESCAN_API_KEY }}
-        run: |
-          echo "Network: baseMainnet"
-          npx hardhat run scripts/deployAllGasless.js --network baseMainnet
-
-      - name: Upload deployment artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: deployments
-          path: deployments
+          BASE_MAINNET_RPC_URL: ${{ secrets.BASE_MAINNET_RPC_URL }}
+          RELAYER_PRIVATE_KEY: ${{ secrets.RELAYER_PRIVATE_KEY }}
