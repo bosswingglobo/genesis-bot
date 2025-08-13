@@ -1,0 +1,23 @@
+require('dotenv').config();
+const { ethers } = require("hardhat");
+
+async function main() {
+  const provider = new ethers.providers.JsonRpcProvider(
+    process.env.BASE_MAINNET_RPC_URL
+  );
+
+  const wallet = new ethers.Wallet(
+    process.env.RELAYER_PRIVATE_KEY,
+    provider
+  );
+
+  console.log("Deploying from:", wallet.address);
+
+  const Contract = await ethers.getContractFactory("YourContract", wallet);
+  const contract = await Contract.deploy();
+  await contract.deployed();
+
+  console.log("Deployed to:", contract.address);
+}
+
+main().catch(console.error);
