@@ -8,7 +8,7 @@
     "clean": "npx hardhat clean",
     "test": "npx hardhat test",
     "deploy": "npx hardhat run scripts/deployAllGasless.js",
-    "build": "npm run compile"  // Added for GitHub Actions
+    "build": "npm run compile"
   },
   "devDependencies": {
     "hardhat": "^2.11.0",
