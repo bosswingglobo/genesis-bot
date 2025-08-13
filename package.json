@@ -3,19 +3,18 @@
   "version": "1.0.0",
   "description": "Genesis Bot for Base Network",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
-    "compile": "hardhat compile",
-    "clean": "hardhat clean",
-    "test": "hardhat test",
-    "deploy:main": "hardhat run scripts/deployAllGasless.js --network baseMainnet",
-    "deploy:sepolia": "hardhat run scripts/deployAllGasless.js --network baseSepolia",
-    "verify:last:main": "hardhat verify --network baseMainnet $(cat deployments/last-deploy-address.txt)",
+    "compile": "npx hardhat compile",
+    "clean": "npx hardhat clean",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deployAllGasless.js",
     "build": "npm run compile"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "dotenv": "^16.4.5",
-    "hardhat": "^2.22.5"
+    "hardhat": "^2.11.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.2",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "ethers": "^5.7.2",
+    "dotenv": "^16.0.3"
   }
 }
